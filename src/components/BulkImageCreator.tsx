@@ -412,9 +412,9 @@ const BulkImageCreator: React.FC = () => {
             <svg className="w-7 h-7 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
 
-          <div className="bg-white w-full max-w-6xl max-h-[95vh] md:max-h-[90vh] overflow-y-auto md:overflow-hidden flex flex-col md:flex-row shadow-2xl" style={{ borderRadius: isMobile ? '24px' : '40px' }}>
-            {/* Image Preview - smaller on mobile */}
-            <div className={`flex items-center justify-center p-3 md:p-4 ${isMobile ? 'h-[180px]' : 'flex-1 min-h-[400px]'}`} style={{ backgroundColor: '#111827' }}>
+          <div className="bg-white w-full max-w-6xl max-h-[95vh] md:max-h-[90vh] overflow-y-auto md:overflow-hidden flex flex-col md:flex-row shadow-2xl" style={{ borderRadius: isCompact ? '24px' : '40px' }}>
+            {/* Image Preview - smaller on mobile/tablet */}
+            <div className={`flex items-center justify-center p-3 md:p-4 ${isCompact ? 'h-[180px]' : 'flex-1 min-h-[400px]'}`} style={{ backgroundColor: '#111827' }}>
               {isEditing ? (
                 <div className="flex flex-col items-center">
                   <div className="w-10 h-10 md:w-16 md:h-16 rounded-full animate-spin mb-2 md:mb-4" style={{ border: '4px solid rgba(255,255,255,0.2)', borderTopColor: '#3b82f6' }}></div>
