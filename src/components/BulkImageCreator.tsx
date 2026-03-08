@@ -402,7 +402,7 @@ const BulkImageCreator: React.FC = () => {
             </div>
 
             {/* Sidebar Controls */}
-            <div className="w-full md:w-[380px] bg-white p-10 flex flex-col justify-between overflow-y-auto" style={{ scrollbarWidth: 'thin' }}>
+            <div className="w-full md:w-[380px] bg-white p-6 sm:p-10 flex flex-col justify-between overflow-y-auto" style={{ scrollbarWidth: 'thin' }}>
               <div className="space-y-8">
                 <div>
                   <h3 className="text-2xl font-black mb-2" style={{ color: '#1a1c23' }}>Editor Options</h3>
