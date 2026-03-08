@@ -45,13 +45,29 @@ const BulkImageCreator: React.FC = () => {
 
   const removeRefImage = (id: string) => setRefImages(prev => prev.filter(img => img.id !== id));
 
+  const getAspectDimensions = (ratio: string, baseSize = 1024) => {
+    const [w, h] = ratio.split(':').map(Number);
+    if (w >= h) return { width: baseSize, height: Math.round(baseSize * (h / w)) };
+    return { width: Math.round(baseSize * (w / h)), height: baseSize };
+  };
+
   const downloadImage = (base64: string, name: string) => {
-    const link = document.createElement('a');
-    link.href = base64;
-    link.download = `${name}.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const { width, height } = getAspectDimensions(settings.aspectRatio);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d')!;
+      ctx.drawImage(img, 0, 0, width, height);
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = `${name}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+    img.src = base64;
   };
 
   const startGeneration = async () => {
