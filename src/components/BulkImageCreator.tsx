@@ -83,7 +83,7 @@ const BulkImageCreator: React.FC = () => {
     }
 
     // On mobile, switch to creation feed view
-    if (isMobile) {
+    if (isCompact) {
       setShowCreationFeed(true);
     }
 
