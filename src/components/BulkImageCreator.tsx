@@ -148,7 +148,7 @@ const BulkImageCreator: React.FC = () => {
     <div className="flex h-screen w-full overflow-hidden" style={{ backgroundColor: '#fffcfd', fontFamily: "'Inter', sans-serif" }}>
       
       {/* LEFT SIDEBAR - Hidden on mobile when showing creation feed */}
-      <aside className={`${isMobile ? (showCreationFeed ? 'hidden' : 'w-full') : 'w-[440px]'} h-full bg-white/90 backdrop-blur-xl border-r border-gray-100 flex flex-col p-8 overflow-y-auto shadow-2xl z-30`} style={{ scrollbarWidth: 'thin' }}>
+      <aside className={`${isCompact ? (showCreationFeed ? 'hidden' : 'w-full') : 'w-[440px]'} h-full bg-white/90 backdrop-blur-xl border-r border-gray-100 flex flex-col p-8 overflow-y-auto shadow-2xl z-30`} style={{ scrollbarWidth: 'thin' }}>
         
         {/* Logo */}
         <div className="flex items-center gap-4 mb-10">
