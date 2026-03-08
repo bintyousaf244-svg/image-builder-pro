@@ -449,7 +449,7 @@ const BulkImageCreator: React.FC = () => {
                   <label className="text-[9px] md:text-[10px] font-black uppercase ml-1 block" style={{ color: '#1a1c23', letterSpacing: '0.1em' }}>Edit with Prompt</label>
                   <textarea
                     className="w-full h-16 md:h-24 p-3 md:p-4 border text-xs md:text-sm font-semibold outline-none resize-none"
-                    style={{ backgroundColor: '#f0f9ff', borderColor: '#dbeafe', borderRadius: isMobile ? '12px' : '16px', color: '#1a1c23' }}
+                    style={{ backgroundColor: '#f0f9ff', borderColor: '#dbeafe', borderRadius: isCompact ? '12px' : '16px', color: '#1a1c23' }}
                     placeholder="e.g. 'Add a red hat'..."
                     value={editPrompt}
                     onChange={(e) => setEditPrompt(e.target.value)}
