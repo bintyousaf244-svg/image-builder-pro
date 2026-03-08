@@ -3,9 +3,12 @@ import { GeneratedImage, AppSettings, RefImage } from '@/types/image';
 import { STYLE_OPTIONS, COLOR_THEMES, ASPECT_RATIOS, DELAY_OPTIONS } from '@/constants/image';
 import { generateImageApi, editImageApi } from '@/lib/imageApi';
 import { useToast } from '@/hooks/use-toast';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const BulkImageCreator: React.FC = () => {
   const { toast } = useToast();
+  const isMobile = useIsMobile();
+  const [showCreationFeed, setShowCreationFeed] = useState(false);
   const [settings, setSettings] = useState<AppSettings>({
     characterPrompt: '',
     bulkPrompts: '',
@@ -77,6 +80,11 @@ const BulkImageCreator: React.FC = () => {
       return;
     }
 
+    // On mobile, switch to creation feed view
+    if (isMobile) {
+      setShowCreationFeed(true);
+    }
+
     setIsGenerating(true);
     setIsPaused(false);
     stopRequested.current = false;
@@ -137,8 +145,8 @@ const BulkImageCreator: React.FC = () => {
   return (
     <div className="flex h-screen w-full overflow-hidden" style={{ backgroundColor: '#fffcfd', fontFamily: "'Inter', sans-serif" }}>
       
-      {/* LEFT SIDEBAR */}
-      <aside className="w-[440px] h-full bg-white/90 backdrop-blur-xl border-r border-gray-100 flex flex-col p-8 overflow-y-auto shadow-2xl z-30" style={{ scrollbarWidth: 'thin' }}>
+      {/* LEFT SIDEBAR - Hidden on mobile when showing creation feed */}
+      <aside className={`${isMobile ? (showCreationFeed ? 'hidden' : 'w-full') : 'w-[440px]'} h-full bg-white/90 backdrop-blur-xl border-r border-gray-100 flex flex-col p-8 overflow-y-auto shadow-2xl z-30`} style={{ scrollbarWidth: 'thin' }}>
         
         {/* Logo */}
         <div className="flex items-center gap-4 mb-10">
@@ -309,10 +317,24 @@ const BulkImageCreator: React.FC = () => {
         </div>
       </aside>
 
-      {/* RIGHT SIDE - CREATION FEED */}
-      <main className="flex-1 relative overflow-y-auto p-12" style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
+      {/* RIGHT SIDE - CREATION FEED - Hidden on mobile when not showing it */}
+      <main className={`${isMobile ? (showCreationFeed ? 'flex-1' : 'hidden') : 'flex-1'} relative overflow-y-auto p-6 md:p-12`} style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
         
-        <header className="mb-14">
+        {/* Back button for mobile */}
+        {isMobile && showCreationFeed && (
+          <button
+            onClick={() => setShowCreationFeed(false)}
+            className="mb-6 flex items-center gap-2 text-sm font-bold hover:opacity-70 transition-opacity"
+            style={{ color: '#1a1c23' }}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Settings
+          </button>
+        )}
+
+        <header className="mb-8 md:mb-14">
           <h2 className="font-black tracking-[-0.04em] leading-none mb-3" style={{ fontSize: '56px', color: '#1a1c23' }}>Creation Feed</h2>
           <div className="flex items-center gap-2.5">
             <span className={`w-3 h-3 rounded-full shadow-md ${isGenerating ? 'animate-pulse' : ''}`} style={{ backgroundColor: isGenerating ? '#3b82f6' : '#4ade80' }}></span>
