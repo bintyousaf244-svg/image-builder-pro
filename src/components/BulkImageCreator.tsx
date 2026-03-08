@@ -440,7 +440,6 @@ const BulkImageCreator: React.FC = () => {
                     disabled={isEditing || !editPrompt.trim()}
                     className="w-full py-4 font-black rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
                     style={{ background: 'linear-gradient(to right, #4ade80, #a855f7)', color: '#000000' }}
-                    style={{ background: 'linear-gradient(to right, #4ade80, #a855f7)' }}
                   >
                     Apply Edit
                   </button>
