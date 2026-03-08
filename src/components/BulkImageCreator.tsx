@@ -310,7 +310,7 @@ const BulkImageCreator: React.FC = () => {
       </aside>
 
       {/* RIGHT SIDE - CREATION FEED */}
-      <main className="flex-1 relative overflow-y-auto p-12" style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
+      <main className="flex-1 relative overflow-y-auto p-4 sm:p-8 lg:p-12" style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
         
         <header className="mb-14">
           <h2 className="font-black tracking-[-0.04em] leading-none mb-3" style={{ fontSize: '56px', color: '#1a1c23' }}>Creation Feed</h2>
