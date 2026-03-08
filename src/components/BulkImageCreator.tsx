@@ -380,17 +380,17 @@ const BulkImageCreator: React.FC = () => {
 
       {/* EXPANDED IMAGE MODAL */}
       {selectedImage && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6" style={{ backgroundColor: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(4px)' }}>
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 lg:p-6" style={{ backgroundColor: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(4px)' }}>
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-8 right-8 text-white hover:text-gray-300 transition-colors z-[110]"
+            className="absolute top-4 right-4 sm:top-8 sm:right-8 text-white hover:text-gray-300 transition-colors z-[110]"
           >
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
 
-          <div className="bg-white max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl" style={{ borderRadius: '40px' }}>
+          <div className="bg-white max-w-6xl w-full max-h-[90vh] overflow-y-auto md:overflow-hidden flex flex-col md:flex-row shadow-2xl" style={{ borderRadius: '24px' }}>
             {/* Image Preview */}
-            <div className="flex-1 flex items-center justify-center p-4 min-h-[400px]" style={{ backgroundColor: '#111827' }}>
+            <div className="flex-1 flex items-center justify-center p-4 min-h-[250px] sm:min-h-[400px]" style={{ backgroundColor: '#111827' }}>
               {isEditing ? (
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 rounded-full animate-spin mb-4" style={{ border: '6px solid rgba(255,255,255,0.2)', borderTopColor: '#3b82f6' }}></div>
