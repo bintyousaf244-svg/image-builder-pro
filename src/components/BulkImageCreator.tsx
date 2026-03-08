@@ -324,7 +324,7 @@ const BulkImageCreator: React.FC = () => {
 
         {images.length === 0 ? (
           <div className="flex flex-col items-center justify-center mt-12">
-            <div className="w-[440px] h-[440px] bg-white shadow-2xl flex flex-col items-center justify-center border border-gray-50 relative overflow-hidden" style={{ borderRadius: '80px', animation: 'subtle-float 4s ease-in-out infinite' }}>
+            <div className="w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[440px] lg:h-[440px] bg-white shadow-2xl flex flex-col items-center justify-center border border-gray-50 relative overflow-hidden" style={{ borderRadius: '80px', animation: 'subtle-float 4s ease-in-out infinite' }}>
               <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(168,85,247,0.04), transparent, rgba(74,222,128,0.04))' }}></div>
               <div className="w-20 h-20 rounded-[28px] flex items-center justify-center text-white text-4xl font-black shadow-xl z-10" style={{ background: 'linear-gradient(135deg, #4ade80, #a855f7)' }}>
                 +
