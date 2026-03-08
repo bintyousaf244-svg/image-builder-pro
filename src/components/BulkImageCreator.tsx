@@ -320,10 +320,10 @@ const BulkImageCreator: React.FC = () => {
       </aside>
 
       {/* RIGHT SIDE - CREATION FEED - Hidden on mobile when not showing it */}
-      <main className={`${isMobile ? (showCreationFeed ? 'flex-1' : 'hidden') : 'flex-1'} relative overflow-y-auto p-6 md:p-12`} style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
+      <main className={`${isCompact ? (showCreationFeed ? 'flex-1' : 'hidden') : 'flex-1'} relative overflow-y-auto p-6 md:p-12`} style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
         
-        {/* Back button for mobile */}
-        {isMobile && showCreationFeed && (
+        {/* Back button for mobile/tablet */}
+        {isCompact && showCreationFeed && (
           <button
             onClick={() => setShowCreationFeed(false)}
             className="mb-6 flex items-center gap-2 text-sm font-bold hover:opacity-70 transition-opacity"
