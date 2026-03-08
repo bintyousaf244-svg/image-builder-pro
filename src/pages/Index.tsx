@@ -1,7 +1,7 @@
-import BulkImageGenerator from "@/components/BulkImageGenerator";
+import BulkImageCreator from "@/components/BulkImageCreator";
 
 const Index = () => {
-  return <BulkImageGenerator />;
+  return <BulkImageCreator />;
 };
 
 export default Index;
