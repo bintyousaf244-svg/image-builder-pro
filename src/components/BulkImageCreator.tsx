@@ -3,11 +3,13 @@ import { GeneratedImage, AppSettings, RefImage } from '@/types/image';
 import { STYLE_OPTIONS, COLOR_THEMES, ASPECT_RATIOS, DELAY_OPTIONS } from '@/constants/image';
 import { generateImageApi, editImageApi } from '@/lib/imageApi';
 import { useToast } from '@/hooks/use-toast';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobile, useIsTablet } from '@/hooks/use-mobile';
 
 const BulkImageCreator: React.FC = () => {
   const { toast } = useToast();
-  const isMobile = useIsMobile();
+  const isMobileDevice = useIsMobile();
+  const isTabletDevice = useIsTablet();
+  const isCompact = isMobileDevice || isTabletDevice;
   const [showCreationFeed, setShowCreationFeed] = useState(false);
   const [settings, setSettings] = useState<AppSettings>({
     characterPrompt: '',
@@ -81,7 +83,7 @@ const BulkImageCreator: React.FC = () => {
     }
 
     // On mobile, switch to creation feed view
-    if (isMobile) {
+    if (isCompact) {
       setShowCreationFeed(true);
     }
 
@@ -146,7 +148,7 @@ const BulkImageCreator: React.FC = () => {
     <div className="flex h-screen w-full overflow-hidden" style={{ backgroundColor: '#fffcfd', fontFamily: "'Inter', sans-serif" }}>
       
       {/* LEFT SIDEBAR - Hidden on mobile when showing creation feed */}
-      <aside className={`${isMobile ? (showCreationFeed ? 'hidden' : 'w-full') : 'w-[440px]'} h-full bg-white/90 backdrop-blur-xl border-r border-gray-100 flex flex-col p-8 overflow-y-auto shadow-2xl z-30`} style={{ scrollbarWidth: 'thin' }}>
+      <aside className={`${isCompact ? (showCreationFeed ? 'hidden' : 'w-full') : 'w-[440px]'} h-full bg-white/90 backdrop-blur-xl border-r border-gray-100 flex flex-col p-8 overflow-y-auto shadow-2xl z-30`} style={{ scrollbarWidth: 'thin' }}>
         
         {/* Logo */}
         <div className="flex items-center gap-4 mb-10">
@@ -318,10 +320,10 @@ const BulkImageCreator: React.FC = () => {
       </aside>
 
       {/* RIGHT SIDE - CREATION FEED - Hidden on mobile when not showing it */}
-      <main className={`${isMobile ? (showCreationFeed ? 'flex-1' : 'hidden') : 'flex-1'} relative overflow-y-auto p-6 md:p-12`} style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
+      <main className={`${isCompact ? (showCreationFeed ? 'flex-1' : 'hidden') : 'flex-1'} relative overflow-y-auto p-6 md:p-12`} style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
         
-        {/* Back button for mobile */}
-        {isMobile && showCreationFeed && (
+        {/* Back button for mobile/tablet */}
+        {isCompact && showCreationFeed && (
           <button
             onClick={() => setShowCreationFeed(false)}
             className="mb-6 flex items-center gap-2 text-sm font-bold hover:opacity-70 transition-opacity"
@@ -410,9 +412,9 @@ const BulkImageCreator: React.FC = () => {
             <svg className="w-7 h-7 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
 
-          <div className="bg-white w-full max-w-6xl max-h-[95vh] md:max-h-[90vh] overflow-y-auto md:overflow-hidden flex flex-col md:flex-row shadow-2xl" style={{ borderRadius: isMobile ? '24px' : '40px' }}>
-            {/* Image Preview - smaller on mobile */}
-            <div className={`flex items-center justify-center p-3 md:p-4 ${isMobile ? 'h-[180px]' : 'flex-1 min-h-[400px]'}`} style={{ backgroundColor: '#111827' }}>
+          <div className="bg-white w-full max-w-6xl max-h-[95vh] md:max-h-[90vh] overflow-y-auto md:overflow-hidden flex flex-col md:flex-row shadow-2xl" style={{ borderRadius: isCompact ? '24px' : '40px' }}>
+            {/* Image Preview - smaller on mobile/tablet */}
+            <div className={`flex items-center justify-center p-3 md:p-4 ${isCompact ? 'h-[180px]' : 'flex-1 min-h-[400px]'}`} style={{ backgroundColor: '#111827' }}>
               {isEditing ? (
                 <div className="flex flex-col items-center">
                   <div className="w-10 h-10 md:w-16 md:h-16 rounded-full animate-spin mb-2 md:mb-4" style={{ border: '4px solid rgba(255,255,255,0.2)', borderTopColor: '#3b82f6' }}></div>
@@ -447,7 +449,7 @@ const BulkImageCreator: React.FC = () => {
                   <label className="text-[9px] md:text-[10px] font-black uppercase ml-1 block" style={{ color: '#1a1c23', letterSpacing: '0.1em' }}>Edit with Prompt</label>
                   <textarea
                     className="w-full h-16 md:h-24 p-3 md:p-4 border text-xs md:text-sm font-semibold outline-none resize-none"
-                    style={{ backgroundColor: '#f0f9ff', borderColor: '#dbeafe', borderRadius: isMobile ? '12px' : '16px', color: '#1a1c23' }}
+                    style={{ backgroundColor: '#f0f9ff', borderColor: '#dbeafe', borderRadius: isCompact ? '12px' : '16px', color: '#1a1c23' }}
                     placeholder="e.g. 'Add a red hat'..."
                     value={editPrompt}
                     onChange={(e) => setEditPrompt(e.target.value)}
