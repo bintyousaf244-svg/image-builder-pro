@@ -3,11 +3,13 @@ import { GeneratedImage, AppSettings, RefImage } from '@/types/image';
 import { STYLE_OPTIONS, COLOR_THEMES, ASPECT_RATIOS, DELAY_OPTIONS } from '@/constants/image';
 import { generateImageApi, editImageApi } from '@/lib/imageApi';
 import { useToast } from '@/hooks/use-toast';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobile, useIsTablet } from '@/hooks/use-mobile';
 
 const BulkImageCreator: React.FC = () => {
   const { toast } = useToast();
-  const isMobile = useIsMobile();
+  const isMobileDevice = useIsMobile();
+  const isTabletDevice = useIsTablet();
+  const isCompact = isMobileDevice || isTabletDevice;
   const [showCreationFeed, setShowCreationFeed] = useState(false);
   const [settings, setSettings] = useState<AppSettings>({
     characterPrompt: '',
