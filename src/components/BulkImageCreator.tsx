@@ -135,10 +135,10 @@ const BulkImageCreator: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen w-full overflow-hidden" style={{ backgroundColor: '#fffcfd', fontFamily: "'Inter', sans-serif" }}>
+    <div className="flex h-screen w-full overflow-hidden" style={{ backgroundColor: '#fffcfd', fontFamily: "'Inter', sans-serif" }}>
       
       {/* LEFT SIDEBAR */}
-      <aside className="w-full lg:w-[440px] h-auto lg:h-full bg-white/90 backdrop-blur-xl border-b lg:border-b-0 lg:border-r border-gray-100 flex flex-col p-4 sm:p-6 lg:p-8 overflow-y-auto shadow-2xl z-30" style={{ scrollbarWidth: 'thin' }}>
+      <aside className="w-[440px] h-full bg-white/90 backdrop-blur-xl border-r border-gray-100 flex flex-col p-8 overflow-y-auto shadow-2xl z-30" style={{ scrollbarWidth: 'thin' }}>
         
         {/* Logo */}
         <div className="flex items-center gap-4 mb-10">
@@ -310,10 +310,10 @@ const BulkImageCreator: React.FC = () => {
       </aside>
 
       {/* RIGHT SIDE - CREATION FEED */}
-      <main className="flex-1 relative overflow-y-auto p-4 sm:p-8 lg:p-12" style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
+      <main className="flex-1 relative overflow-y-auto p-12" style={{ background: 'linear-gradient(135deg, #fdf4ff, #ffffff, rgba(240,255,244,0.1))', scrollbarWidth: 'thin' }}>
         
         <header className="mb-14">
-          <h2 className="font-black tracking-[-0.04em] leading-none mb-3 text-3xl sm:text-4xl lg:text-[56px]" style={{ color: '#1a1c23' }}>Creation Feed</h2>
+          <h2 className="font-black tracking-[-0.04em] leading-none mb-3" style={{ fontSize: '56px', color: '#1a1c23' }}>Creation Feed</h2>
           <div className="flex items-center gap-2.5">
             <span className={`w-3 h-3 rounded-full shadow-md ${isGenerating ? 'animate-pulse' : ''}`} style={{ backgroundColor: isGenerating ? '#3b82f6' : '#4ade80' }}></span>
             <span className="text-[11px] font-black uppercase" style={{ color: '#6b7280', letterSpacing: '0.2em' }}>
@@ -324,7 +324,7 @@ const BulkImageCreator: React.FC = () => {
 
         {images.length === 0 ? (
           <div className="flex flex-col items-center justify-center mt-12">
-            <div className="w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[440px] lg:h-[440px] bg-white shadow-2xl flex flex-col items-center justify-center border border-gray-50 relative overflow-hidden" style={{ borderRadius: '80px', animation: 'subtle-float 4s ease-in-out infinite' }}>
+            <div className="w-[440px] h-[440px] bg-white shadow-2xl flex flex-col items-center justify-center border border-gray-50 relative overflow-hidden" style={{ borderRadius: '80px', animation: 'subtle-float 4s ease-in-out infinite' }}>
               <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(168,85,247,0.04), transparent, rgba(74,222,128,0.04))' }}></div>
               <div className="w-20 h-20 rounded-[28px] flex items-center justify-center text-white text-4xl font-black shadow-xl z-10" style={{ background: 'linear-gradient(135deg, #4ade80, #a855f7)' }}>
                 +
