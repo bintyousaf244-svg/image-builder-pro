@@ -402,21 +402,21 @@ const BulkImageCreator: React.FC = () => {
 
       {/* EXPANDED IMAGE MODAL */}
       {selectedImage && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6" style={{ backgroundColor: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(4px)' }}>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 md:p-6" style={{ backgroundColor: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(4px)' }}>
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-8 right-8 text-white hover:text-gray-300 transition-colors z-[110]"
+            className="absolute top-4 right-4 md:top-8 md:right-8 text-white hover:text-gray-300 transition-colors z-[110]"
           >
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            <svg className="w-7 h-7 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
 
-          <div className="bg-white max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl" style={{ borderRadius: '40px' }}>
-            {/* Image Preview */}
-            <div className="flex-1 flex items-center justify-center p-4 min-h-[400px]" style={{ backgroundColor: '#111827' }}>
+          <div className="bg-white w-full max-w-6xl max-h-[95vh] md:max-h-[90vh] overflow-y-auto md:overflow-hidden flex flex-col md:flex-row shadow-2xl" style={{ borderRadius: isMobile ? '24px' : '40px' }}>
+            {/* Image Preview - smaller on mobile */}
+            <div className={`flex items-center justify-center p-3 md:p-4 ${isMobile ? 'h-[180px]' : 'flex-1 min-h-[400px]'}`} style={{ backgroundColor: '#111827' }}>
               {isEditing ? (
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full animate-spin mb-4" style={{ border: '6px solid rgba(255,255,255,0.2)', borderTopColor: '#3b82f6' }}></div>
-                  <span className="text-white font-bold uppercase text-sm" style={{ letterSpacing: '0.1em' }}>Processing Edits...</span>
+                  <div className="w-10 h-10 md:w-16 md:h-16 rounded-full animate-spin mb-2 md:mb-4" style={{ border: '4px solid rgba(255,255,255,0.2)', borderTopColor: '#3b82f6' }}></div>
+                  <span className="text-white font-bold uppercase text-[10px] md:text-sm" style={{ letterSpacing: '0.1em' }}>Processing...</span>
                 </div>
               ) : (
                 <img src={selectedImage.url} className="max-w-full max-h-full object-contain shadow-2xl rounded-lg" alt="Expanded view" />
@@ -424,31 +424,31 @@ const BulkImageCreator: React.FC = () => {
             </div>
 
             {/* Sidebar Controls */}
-            <div className="w-full md:w-[380px] bg-white p-10 flex flex-col justify-between overflow-y-auto" style={{ scrollbarWidth: 'thin' }}>
-              <div className="space-y-8">
+            <div className="w-full md:w-[380px] bg-white p-5 md:p-10 flex flex-col justify-between overflow-y-auto" style={{ scrollbarWidth: 'thin' }}>
+              <div className="space-y-4 md:space-y-8">
                 <div>
-                  <h3 className="text-2xl font-black mb-2" style={{ color: '#1a1c23' }}>Editor Options</h3>
-                  <p className="text-xs font-bold uppercase" style={{ color: '#9ca3af', letterSpacing: '0.1em' }}>Fine-tune your creation</p>
+                  <h3 className="text-base md:text-2xl font-black mb-1" style={{ color: '#1a1c23' }}>Editor Options</h3>
+                  <p className="text-[9px] md:text-xs font-bold uppercase" style={{ color: '#9ca3af', letterSpacing: '0.1em' }}>Fine-tune your creation</p>
                 </div>
 
                 {/* Remove Background */}
                 <button
                   onClick={() => processImageEdit("Remove the background from this image. Keep only the main subject on a clean white background.")}
                   disabled={isEditing}
-                  className="w-full py-4 border font-black rounded-2xl flex items-center justify-center gap-3 transition-all disabled:opacity-50 hover:bg-blue-50"
+                  className="w-full py-3 md:py-4 border font-black text-xs md:text-sm rounded-xl md:rounded-2xl flex items-center justify-center gap-2 md:gap-3 transition-all disabled:opacity-50 hover:bg-blue-50"
                   style={{ backgroundColor: '#f0f9ff', borderColor: '#dbeafe', color: '#2563eb' }}
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                   Remove Background
                 </button>
 
                 {/* Edit with Prompt */}
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase ml-1 block" style={{ color: '#1a1c23', letterSpacing: '0.1em' }}>Edit with Prompt</label>
+                <div className="space-y-2 md:space-y-3">
+                  <label className="text-[9px] md:text-[10px] font-black uppercase ml-1 block" style={{ color: '#1a1c23', letterSpacing: '0.1em' }}>Edit with Prompt</label>
                   <textarea
-                    className="w-full h-24 p-4 border text-sm font-semibold outline-none resize-none"
-                    style={{ backgroundColor: '#f0f9ff', borderColor: '#dbeafe', borderRadius: '16px', color: '#1a1c23' }}
-                    placeholder="e.g. 'Add a red hat' or 'Change background to Mars'..."
+                    className="w-full h-16 md:h-24 p-3 md:p-4 border text-xs md:text-sm font-semibold outline-none resize-none"
+                    style={{ backgroundColor: '#f0f9ff', borderColor: '#dbeafe', borderRadius: isMobile ? '12px' : '16px', color: '#1a1c23' }}
+                    placeholder="e.g. 'Add a red hat'..."
                     value={editPrompt}
                     onChange={(e) => setEditPrompt(e.target.value)}
                   />
@@ -460,7 +460,7 @@ const BulkImageCreator: React.FC = () => {
                       }
                     }}
                     disabled={isEditing || !editPrompt.trim()}
-                    className="w-full py-4 font-black rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
+                    className="w-full py-3 md:py-4 font-black text-xs md:text-sm rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
                     style={{ background: 'linear-gradient(to right, #4ade80, #a855f7)', color: '#000000' }}
                   >
                     Apply Edit
@@ -471,10 +471,10 @@ const BulkImageCreator: React.FC = () => {
               {/* Download */}
               <button
                 onClick={() => downloadImage(selectedImage.url, `edit_${selectedImage.id}`)}
-                className="w-full py-5 border-2 font-black rounded-2xl flex items-center justify-center gap-3 transition-all mt-10 hover:bg-muted"
+                className="w-full py-3 md:py-5 border-2 font-black text-xs md:text-sm rounded-xl md:rounded-2xl flex items-center justify-center gap-2 md:gap-3 transition-all mt-5 md:mt-10 hover:bg-muted"
                 style={{ borderColor: '#1a1c23', color: '#1a1c23' }}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                 Download Version
               </button>
             </div>
