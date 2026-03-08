@@ -80,6 +80,11 @@ const BulkImageCreator: React.FC = () => {
       return;
     }
 
+    // On mobile, switch to creation feed view
+    if (isMobile) {
+      setShowCreationFeed(true);
+    }
+
     setIsGenerating(true);
     setIsPaused(false);
     stopRequested.current = false;
