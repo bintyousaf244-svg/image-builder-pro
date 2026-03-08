@@ -135,10 +135,10 @@ const BulkImageCreator: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden" style={{ backgroundColor: '#fffcfd', fontFamily: "'Inter', sans-serif" }}>
+    <div className="flex flex-col lg:flex-row h-screen w-full overflow-hidden" style={{ backgroundColor: '#fffcfd', fontFamily: "'Inter', sans-serif" }}>
       
       {/* LEFT SIDEBAR */}
-      <aside className="w-[440px] h-full bg-white/90 backdrop-blur-xl border-r border-gray-100 flex flex-col p-8 overflow-y-auto shadow-2xl z-30" style={{ scrollbarWidth: 'thin' }}>
+      <aside className="w-full lg:w-[440px] h-auto lg:h-full bg-white/90 backdrop-blur-xl border-b lg:border-b-0 lg:border-r border-gray-100 flex flex-col p-4 sm:p-6 lg:p-8 overflow-y-auto shadow-2xl z-30" style={{ scrollbarWidth: 'thin' }}>
         
         {/* Logo */}
         <div className="flex items-center gap-4 mb-10">
