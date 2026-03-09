@@ -287,7 +287,11 @@ const BulkImageCreator: React.FC = () => {
             <button
               onClick={startGeneration}
               className="w-full py-5 px-6 rounded-2xl text-primary-foreground font-bold text-base shadow-xl transition-all transform hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: 'var(--gradient-primary)', boxShadow: 'var(--shadow-xl)' }}
+              style={{ 
+                background: 'var(--gradient-plum-purple)', 
+                boxShadow: 'var(--shadow-xl), 0 0 20px hsl(300 47% 55% / 0.5)',
+                textShadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.5)'
+              }}
             >
               START BATCH
             </button>
