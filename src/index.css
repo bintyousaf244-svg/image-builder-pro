@@ -41,11 +41,11 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
-    --gradient-primary: linear-gradient(135deg, hsl(270 65% 75%) 0%, hsl(280 55% 80%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(195 92% 62%) 0%, hsl(270 65% 75%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(300 47% 45%) 0%, hsl(280 55% 55%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(300 47% 45%) 0%, hsl(280 60% 60%) 100%);
     --gradient-plum-purple: linear-gradient(135deg, hsl(300 47% 45%) 0%, hsl(280 60% 60%) 100%);
-    --shadow-lg: 0 20px 40px -12px hsl(270 65% 75% / 0.15);
-    --shadow-xl: 0 24px 48px -12px hsl(270 65% 75% / 0.25);
+    --shadow-lg: 0 20px 40px -12px hsl(300 47% 45% / 0.15);
+    --shadow-xl: 0 24px 48px -12px hsl(300 47% 45% / 0.25);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
